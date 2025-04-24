@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Campus Resource Optimizer</title>
+  <link rel="stylesheet" href="home.css" />
+
+    <!-- Firebase SDKs -->
+<script type="module">
+    // Import the functions you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+  
+    // Your Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyCrX9qB5O136AK-ApXNm-V4-HU-WT0vXKI",
+      authDomain: "campu-resource-manager.firebaseapp.com",
+      projectId: "campu-resource-manager",
+      storageBucket: "campu-resource-manager.firebasestorage.app",
+      messagingSenderId: "383912342682",
+      appId: "1:383912342682:web:df1bc74cd66a2e536f1b23"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    window.db = db;
+  
+    // 🔥 Store booking data (Example function)
+    async function saveBooking() {
+      try {
+        const docRef = await addDoc(collection(db, "bookings"), {
+          room: "Lab A",
+          date: "2025-04-25",
+          startTime: "14:00",
+          endTime: "16:00",
+          bookedBy: "John",
+          purpose: "Physics Project"
+        });
+        console.log("Booking saved with ID:", docRef.id);
+      } catch (e) {
+        console.error("Error adding booking:", e);
+      }
+    }
+  
+    // Call this function when form is submitted
+    window.saveBooking = saveBooking;
+  </script>
+
+</head>
+<body>
+  <div class="dashboard-container">
+    <header class="dashboard-header">
+      <div class="logo-section">
+        <img src="CCETLOGO.png" alt="CCET Logo" class="logo">
+        <h1>Campus Resource Optimizer</h1>
+      </div>
+      <div class="user-profile">
+        <span class="user-name">👤 Admin</span>
+        <div class="user-menu">
+          <a href="settings.html">Settings</a>
+          <a href="Login_page.html">Logout</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="dashboard-main">
+      <section class="quick-stats">
+        <div class="stat-card">
+          <div class="stat-icon">📅</div>
+          <div class="stat-content">
+            <h3>Bookings Today</h3>
+            <span class="stat-number">0</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">✅</div>
+          <div class="stat-content">
+            <h3>Available Rooms</h3>
+            <span class="stat-number">0</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⚠️</div>
+          <div class="stat-content">
+            <h3>Conflicts</h3>
+            <span class="stat-number">0</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="action-cards">
+        <div class="card" onclick="goToBookingForm()">
+          <div class="card-icon">📅</div>
+          <h3>Book a Room</h3>
+          <p>Schedule a new room booking</p>
+        </div>
+        <div class="card" onclick="goToAvailability()">
+          <div class="card-icon">🔍</div>
+          <h3>Check Availability</h3>
+          <p>View room availability</p>
+        </div>
+        <div class="card" onclick="goToMyBookings()">
+          <div class="card-icon">📖</div>
+          <h3>My Bookings</h3>
+          <p>Manage your bookings</p>
+        </div>
+        <div class="card" onclick="goToStats()">
+          <div class="card-icon">📊</div>
+          <h3>Admin Panel</h3>
+          <p>View analytics and reports</p>
+        </div>
+        <div class="card" onclick="goToSettings()">
+          <div class="card-icon">⚙️</div>
+          <h3>Settings</h3>
+          <p>Configure your preferences</p>
+        </div>
+      </section>
+
+      <section class="info-panels">
+        <div class="calendar-panel">
+          <h3>🗓️ Today's Schedule</h3>
+          <div class="schedule-preview">
+            <!-- Bookings will be loaded here -->
+            <div class="loading">Loading schedule...</div>
+          </div>
+        </div>
+        <div class="activity-panel">
+          <h3>🛎️ Recent Activity</h3>
+          <div class="activity-list">
+            <!-- Activities will be loaded here -->
+            <div class="loading">Loading activities...</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="dashboard.js"></script>
+  <script type="module" src="home.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Campus Resource Optimizer</title>
+    <link rel="stylesheet" href="register.css">
+    
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCrX9qB5O136AK-ApXNm-V4-HU-WT0vXKI",
+            authDomain: "campu-resource-manager.firebaseapp.com",
+            projectId: "campu-resource-manager",
+            storageBucket: "campu-resource-manager.firebasestorage.app",
+            messagingSenderId: "383912342682",
+            appId: "1:383912342682:web:df1bc74cd66a2e536f1b23"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        window.db = db;
+    </script>
+</head>
+<body>
+    <div class="register-container">
+        <div class="image-section">
+            <!-- CCET Logo will be displayed here -->
+        </div>
+        <div class="form-section">
+            <form id="registerForm">
+                <h2>Create Account</h2>
+                
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required placeholder="Enter your email">
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <select id="role" required>
+                        <option value="">Select your role</option>
+                        <option value="student">Student</option>
+                        <option value="faculty">Faculty</option>
+                        <option value="staff">Staff</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="department">Department</label>
+                    <select id="department" required>
+                        <option value="">Select your department</option>
+                        <option value="cse">Computer Science</option>
+                        <option value="ece">Electronics</option>
+                        <option value="mech">Mechanical</option>
+                        <option value="civil">Civil</option>
+                        <option value="it">Information Technology</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required placeholder="Create a password">
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" required placeholder="Confirm your password">
+                </div>
+
+                <button type="submit">Register</button>
+
+                <div class="form-footer">
+                    Already have an account? <a href="Login_page.html">Login here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="register.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings - Campus Resource Optimizer</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="my-bookings.css">
+    
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCrX9qB5O136AK-ApXNm-V4-HU-WT0vXKI",
+            authDomain: "campu-resource-manager.firebaseapp.com",
+            projectId: "campu-resource-manager",
+            storageBucket: "campu-resource-manager.firebasestorage.app",
+            messagingSenderId: "383912342682",
+            appId: "1:383912342682:web:df1bc74cd66a2e536f1b23"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        window.db = db;
+    </script>
+</head>
+<body>
+    <div class="page-container">
+        <header class="topbar">
+            <div class="header-content">
+                <a href="index.html" class="back-link">← Back to Home</a>
+                <h1>My Bookings</h1>
+                <div class="user-profile">👤 Admin ▾</div>
+            </div>
+        </header>
+
+        <main class="main-container">
+            <div class="booking-tabs">
+                <button class="tab active" data-tab="upcoming">Upcoming</button>
+                <button class="tab" data-tab="past">Past</button>
+                <button class="tab" data-tab="cancelled">Cancelled</button>
+            </div>
+
+            <div class="bookings-container">
+                <div class="bookings-list" id="bookingsList">
+                    <!-- Bookings will be loaded here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="my-bookings.js"></script>
+</body>
+</html>

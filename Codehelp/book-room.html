@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Room - Campus Resource Optimizer</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="book-room.css">
+    
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCrX9qB5O136AK-ApXNm-V4-HU-WT0vXKI",
+            authDomain: "campu-resource-manager.firebaseapp.com",
+            projectId: "campu-resource-manager",
+            storageBucket: "campu-resource-manager.firebasestorage.app",
+            messagingSenderId: "383912342682",
+            appId: "1:383912342682:web:df1bc74cd66a2e536f1b23"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        window.db = db;
+    </script>
+</head>
+<body>
+    <div class="page-container">
+        <header class="topbar">
+            <div class="header-content">
+                <a href="index.html" class="back-link">← Back to Home</a>
+                <h1>Book a Room</h1>
+                <div class="user-profile">👤 Admin ▾</div>
+            </div>
+        </header>
+
+        <main class="main-container">
+            <form id="bookingForm" class="booking-form">
+                <div class="form-group">
+                    <label for="roomType">Select Room</label>
+                    <select id="roomType" required>
+                        <option value="">Select a Room</option>
+                        <!-- Rooms will be loaded here -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="dateInput">Date</label>
+                    <input type="date" id="dateInput" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="startTime">Start Time</label>
+                    <input type="time" id="startTime" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="endTime">End Time</label>
+                    <input type="time" id="endTime" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="purpose">Purpose</label>
+                    <textarea id="purpose" required></textarea>
+                </div>
+
+                <div class="room-preview">
+                    <!-- Room details will be shown here -->
+                </div>
+
+                <button type="submit" class="submit-btn">Book Room</button>
+            </form>
+        </main>
+    </div>
+
+    <script type="module" src="book-room.js"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Campus Resource Optimizer</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="admin-panel.css">
+    
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCrX9qB5O136AK-ApXNm-V4-HU-WT0vXKI",
+            authDomain: "campu-resource-manager.firebaseapp.com",
+            projectId: "campu-resource-manager",
+            storageBucket: "campu-resource-manager.firebasestorage.app",
+            messagingSenderId: "383912342682",
+            appId: "1:383912342682:web:df1bc74cd66a2e536f1b23"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        window.db = db;
+    </script>
+</head>
+<body>
+    <div class="page-container">
+        <header class="topbar">
+            <div class="header-content">
+                <a href="index.html" class="back-link">← Back to Home</a>
+                <h1>Admin Panel</h1>
+                <div class="user-profile">👤 Admin ▾</div>
+            </div>
+        </header>
+
+        <main class="main-container">
+            <!-- Statistics Cards -->
+            <section class="stats-section">
+                <div class="stats-card">
+                    <div class="stats-icon">📊</div>
+                    <div class="stats-info">
+                        <h3>Total Bookings</h3>
+                        <p id="totalBookings">0</p>
+                    </div>
+                </div>
+                <div class="stats-card">
+                    <div class="stats-icon">🏢</div>
+                    <div class="stats-info">
+                        <h3>Active Rooms</h3>
+                        <p id="activeRooms">0</p>
+                    </div>
+                </div>
+                <div class="stats-card">
+                    <div class="stats-icon">👥</div>
+                    <div class="stats-info">
+                        <h3>Total Users</h3>
+                        <p id="totalUsers">0</p>
+                    </div>
+                </div>
+                <div class="stats-card">
+                    <div class="stats-icon">📈</div>
+                    <div class="stats-info">
+                        <h3>Utilization Rate</h3>
+                        <p id="utilizationRate">0%</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Charts Section -->
+            <section class="charts-section">
+                <div class="chart-container">
+                    <h3>Room Utilization</h3>
+                    <canvas id="utilizationChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Bookings by Department</h3>
+                    <canvas id="departmentChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Room Management -->
+            <section class="management-section">
+                <div class="section-header">
+                    <h2>Room Management</h2>
+                    <button class="add-btn" onclick="showAddRoomModal()">Add New Room</button>
+                </div>
+                <div class="room-list" id="roomList">
+                    <!-- Rooms will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Recent Activity -->
+            <section class="activity-section">
+                <h2>Recent Activity</h2>
+                <div class="activity-list" id="activityList">
+                    <!-- Activities will be loaded here -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Add Room Modal -->
+        <div id="addRoomModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="hideAddRoomModal()">&times;</span>
+                <h2>Add New Room</h2>
+                <form id="addRoomForm">
+                    <div class="form-group">
+                        <label for="roomName">Room Name</label>
+                        <input type="text" id="roomName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="roomType">Room Type</label>
+                        <select id="roomType" required>
+                            <option value="">Select Room Type</option>
+                            <option value="classroom">Classroom</option>
+                            <option value="lab">Laboratory</option>
+                            <option value="conference">Conference Room</option>
+                            <option value="auditorium">Auditorium</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="capacity">Capacity</label>
+                        <input type="number" id="capacity" required min="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Facilities</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="facilities" value="projector"> Projector</label>
+                            <label><input type="checkbox" name="facilities" value="ac"> AC</label>
+                            <label><input type="checkbox" name="facilities" value="computers"> Computers</label>
+                            <label><input type="checkbox" name="facilities" value="whiteboard"> Whiteboard</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">Add Room</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="admin-panel.js"></script>
+</body>
+</html>

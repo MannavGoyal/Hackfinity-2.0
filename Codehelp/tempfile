@@ -1,0 +1,16 @@
+<h2>Register a New User</h2>
+<form id="registerForm">
+  <input type="text" id="fullName" placeholder="Full Name" required><br>
+  <input type="email" id="email" placeholder="Email" required><br>
+  
+  <select id="role" required>
+    <option value="">Select Role</option>
+    <option value="admin">Admin</option>
+    <option value="faculty">Faculty</option>
+    <option value="student">Student</option>
+    <option value="maintenance">Maintenance Staff</option>
+  </select><br>
+
+  <input type="password" id="password" placeholder="Password" required><br>
+  <button type="submit">Register User</button>
+</form>

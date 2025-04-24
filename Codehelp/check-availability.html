@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Availability - Campus Resource Optimizer</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="check-availability.css">
+    
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCrX9qB5O136AK-ApXNm-V4-HU-WT0vXKI",
+            authDomain: "campu-resource-manager.firebaseapp.com",
+            projectId: "campu-resource-manager",
+            storageBucket: "campu-resource-manager.firebasestorage.app",
+            messagingSenderId: "383912342682",
+            appId: "1:383912342682:web:df1bc74cd66a2e536f1b23"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        window.db = db;
+    </script>
+</head>
+<body>
+    <div class="page-container">
+        <header class="topbar">
+            <div class="header-content">
+                <a href="index.html" class="back-link">← Back to Home</a>
+                <h1>Room Availability</h1>
+                <div class="user-profile">👤 Admin ▾</div>
+            </div>
+        </header>
+
+        <main class="main-container">
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="buildingFilter">Building</label>
+                    <select id="buildingFilter">
+                        <option value="">All Buildings</option>
+                        <option value="main">Main Building</option>
+                        <option value="science">Science Block</option>
+                        <option value="library">Library Block</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="roomTypeFilter">Room Type</label>
+                    <select id="roomTypeFilter">
+                        <option value="">All Types</option>
+                        <option value="classroom">Classroom</option>
+                        <option value="lab">Laboratory</option>
+                        <option value="conference">Conference Room</option>
+                        <option value="auditorium">Auditorium</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="dateFilter">Date</label>
+                    <input type="date" id="dateFilter">
+                </div>
+
+                <div class="filter-group">
+                    <label for="timeFilter">Time</label>
+                    <select id="timeFilter">
+                        <option value="">All Times</option>
+                        <option value="morning">Morning (8 AM - 12 PM)</option>
+                        <option value="afternoon">Afternoon (12 PM - 4 PM)</option>
+                        <option value="evening">Evening (4 PM - 8 PM)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="availability-container">
+                <div class="room-grid" id="roomGrid">
+                    <!-- Rooms will be loaded here -->
+                    <div class="loading">Loading rooms...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="check-availability.js"></script>
+</body>
+</html>

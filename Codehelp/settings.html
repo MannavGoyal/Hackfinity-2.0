@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Campus Resource Optimizer</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+    <header class="topbar">
+        <h1>Settings</h1>
+        <div class="user-profile">👤 Admin ▾</div>
+    </header>
+
+    <div class="navigation-back">
+        <a href="index.html" class="back-button">← Back to Home</a>
+    </div>
+    <main class="main-container">
+        <div class="settings-container">
+            <section class="settings-section">
+                <h2>Profile Settings</h2>
+                <form id="profileForm">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" id="userName" value="Admin User">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="userEmail" value="admin@campus.edu">
+                    </div>
+                    <div class="form-group">
+                        <label>Notification Preferences</label>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" checked> Email Notifications
+                            </label>
+                            <label>
+                                <input type="checkbox" checked> Browser Notifications
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+            <section class="settings-section">
+                <h2>Display Settings</h2>
+                <div class="form-group">
+                    <label>Theme</label>
+                    <select id="themeSelect">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="system">System Default</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Calendar View</label>
+                    <select id="calendarView">
+                        <option value="week">Week</option>
+                        <option value="month">Month</option>
+                    </select>
+                </div>
+            </section>
+
+            <button class="save-settings">Save Changes</button>
+        </div>
+    </main>
+
+    <script src="settings.js"></script>
+</body>
+</html>
